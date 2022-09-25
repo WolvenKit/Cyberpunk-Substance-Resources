@@ -2,7 +2,8 @@
 
 Collection of resources for Substance to streamline Cyberpunk 2077 multilayered assets.
 
-![substance resources example 1](https://user-images.githubusercontent.com/65016231/191028288-d3a2d41e-e0fa-42c9-b499-04fec1081489.png)
+![substance resources example 3](https://user-images.githubusercontent.com/65016231/192145740-62aaf24c-c8c5-4096-9d98-5d4b9d0037ec.png)
+
 
 ## What's included?
 **Substance Designer**
@@ -13,7 +14,8 @@ Collection of resources for Substance to streamline Cyberpunk 2077 multilayered 
 - Painter export templates for batch exporting Cyberpunk-style masks
 - Painter project template for setting up batch exports
 
-![substance resources example 2](https://user-images.githubusercontent.com/65016231/191028331-31bb852f-d25b-4052-a1ed-7a81bbd47bef.png)
+![substance resources example 4](https://user-images.githubusercontent.com/65016231/192145774-747fc9d8-6240-4b26-bd58-be74eb17ec50.png)
+
 
 -------------------
 
@@ -28,6 +30,13 @@ Collection of resources for Substance to streamline Cyberpunk 2077 multilayered 
 
 -------------------
 
+## To-Do List
+
+- Allow color swapping and other adjustments (some complications with Designer API and Painter Dynamic material shader)
+- Implement some interoperability with WolvenKit by import or exporting mlsetup data with Painter
+
 ## Help
 
 Looking for help using this project? [Reach out on the Cyberpunk 2077 Modding Discord.](https://discord.gg/Epkq79kd96)
+
+Interested in contributing? Feel free to submit a pull request. Alternatively, reach out on Discord by using the server invitation link above.
