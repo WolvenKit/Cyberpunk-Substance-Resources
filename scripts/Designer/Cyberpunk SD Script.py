@@ -25,15 +25,18 @@ def main(aSDContext):
 
     # =========================================================================
     # User input
-    # Full system file path leading to exported templates and textures (i.e. C:\\modding\\cyberpunk\\)
-    BasePath = "Q:\\77.modding\\Wolvenkit_full_extract\\base\\"
-
+    
+    # Full system file path leading to exported templates and textures (i.e. C:\\modding\\cyberpunk\\wolvenkitproject\\source\\raw)
+    BasePath = "Q:\\77.modding\\77.wkitprojects\\mltemplate\\source\\raw\\"
+    
     # Raw texture format of exported textures (.png, .tga, etc.)
     # TGA is recommended for now due to potential color space issues with WolvenKit PNG exports
-    rawTextureFormat = ".png"
+    rawTextureFormat = ".tga"
 
     # (optional) Set path to PNG format previews named after each mltemplate to include previews
     previewsPath = ("")
+
+    # End of user input
 
     # =========================================================================
     # Create a new Package
@@ -171,7 +174,7 @@ def main(aSDContext):
                     metalOut0 = 0
                     metalOut1 = 1
                 Output["MetalLevelsOut"][overrideName] = [(metalOut0,metalOut0,metalOut0,1),(metalOut1,metalOut1,metalOut1,1)]
-          
+
             if "ColorScale" in Output and colorDefaultOverride in Output["ColorScale"]:
               defaultColor = (Output["ColorScale"][colorDefaultOverride])
             if "NormalStrength" in Output:
@@ -442,39 +445,41 @@ def main(aSDContext):
 
 
 
-
+            # Removed mask element for now - may be related to slow-downs and is not necessary for traditional or dynamic-layering workflow.
             # =========================================================================
             # MASK
 
             # Create a uniform color node
-            maskCompNodeUniform = sdSBSCompGraph.newNode('sbs::compositing::uniform')
-            maskCompNodeUniform.setPosition(float2(-2*cGridSize, 16*cGridSize))
-            maskCompNodeUniform.setInputPropertyInheritanceMethodFromId('$format', SDPropertyInheritanceMethod.Absolute)
-            maskCompNodeUniform.setInputPropertyValueFromId('$format', SDValueEnum.sFromValueId('sbs::compositing::format', '8_bits_per_channel'))
-            maskValueColorRGBA = SDValueColorRGBA.sNew(ColorRGBA(0.0, 0.0, 0.0, 1.0))
-            maskCompNodeUniform.setInputPropertyValueFromId('outputcolor', maskValueColorRGBA)
+            #maskCompNodeUniform = sdSBSCompGraph.newNode('sbs::compositing::uniform')
+            #maskCompNodeUniform.setPosition(float2(-2*cGridSize, 16*cGridSize))
+            #maskCompNodeUniform.setInputPropertyInheritanceMethodFromId('$format', SDPropertyInheritanceMethod.Absolute)
+            #maskCompNodeUniform.setInputPropertyValueFromId('$format', SDValueEnum.sFromValueId('sbs::compositing::format', '8_bits_per_channel'))
+            #maskValueColorRGBA = SDValueColorRGBA.sNew(ColorRGBA(0.0, 0.0, 0.0, 1.0))
+            #maskCompNodeUniform.setInputPropertyValueFromId('outputcolor', maskValueColorRGBA)
 
             # =========================================================================
             # Create an output Node
-            maskCompNodeOutput = sdSBSCompGraph.newNode('sbs::compositing::output')
-            maskCompNodeOutput.setPosition(float2(2*cGridSize, 16*cGridSize))
-            masksdValueString = SDValueString.sNew("mask")
-            maskCompNodeOutput.setAnnotationPropertyValueFromId('identifier', masksdValueString)
+            #maskCompNodeOutput = sdSBSCompGraph.newNode('sbs::compositing::output')
+            #maskCompNodeOutput.setPosition(float2(2*cGridSize, 16*cGridSize))
+            #masksdValueString = SDValueString.sNew("mask")
+            #maskCompNodeOutput.setAnnotationPropertyValueFromId('identifier', masksdValueString)
 
-            sdValueArray = SDValueArray.sNew(SDTypeUsage.sNew(), 0)
-            sdValueUsage = SDValueUsage.sNew(SDUsage.sNew('mask', 'RGBA', 'Linear'))
-            sdValueArray.pushBack(sdValueUsage)
+            #sdValueArray = SDValueArray.sNew(SDTypeUsage.sNew(), 0)
+            #sdValueUsage = SDValueUsage.sNew(SDUsage.sNew('mask', 'RGBA', 'Linear'))
+            #sdValueArray.pushBack(sdValueUsage)
 
-            maskCompNodeOutput.setAnnotationPropertyValueFromId('usages', sdValueArray)
+            #maskCompNodeOutput.setAnnotationPropertyValueFromId('usages', sdValueArray)
 
             # =========================================================================
             # Create connections
-            maskCompNodeUniform.newPropertyConnectionFromId('unique_filter_output', maskCompNodeOutput, 'inputNodeOutput')
+            #maskCompNodeUniform.newPropertyConnectionFromId('unique_filter_output', maskCompNodeOutput, 'inputNodeOutput')
 
             # Print success message for each mltemplate (useful for debugging when code is not reached)
             print("Success")
+
         except:
             print('An exception occurred. File was skipped…')
+
     # =========================================================================
     # Save the new package on disk
     dstFileAbsPath = os.path.join(io.getUserDocumentOutputDir(__file__), sbsPackageName + '.sbs')
